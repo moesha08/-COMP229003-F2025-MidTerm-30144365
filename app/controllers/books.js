@@ -57,7 +57,7 @@ module.exports.getAll = async function (req, res, next) {
 module.exports.update = async function (req, res, next) {
   try {
     let result = await BookModel.updateOne(
-      { _id: req.params.bookId }, 
+      { _id: req.params.id },  // This is correct
       { $set: req.body }
     );
 
@@ -86,7 +86,7 @@ module.exports.update = async function (req, res, next) {
 // CORRECTED:
 module.exports.remove = async function (req, res, next) {
   try {
-    let result = await BookModel.deleteOne({ _id: req.params.bookId });
+    let result = await BookModel.deleteOne({ _id: req.params.id }); // This is correct
 
     // Handle the result and send a response
     if (result.deletedCount > 0) {
